@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".ActionBarTransformationActivity"
-            android:theme="@style/Theme.AppCompat.Light"
+            android:theme="@style/SampleTheme"
             android:label="@string/title_activity_action_bar_transformation" >
         </activity>
     </application>

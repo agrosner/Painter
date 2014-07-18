@@ -1,5 +1,6 @@
 package com.grosner.sample;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -8,29 +9,42 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import com.grosner.painter.actionbar.ActionBarAlphaSlider;
+import com.grosner.painter.actionbar.ActionBarColorSlider;
 import com.grosner.painter.slider.AlphaSlider;
 import com.grosner.painter.slider.ColorSlider;
 import com.grosner.painter.IconPainter;
+import com.grosner.painter.utils.SliderUtils;
 
 public class ActionBarTransformationActivity extends ActionBarActivity implements DrawerLayout.DrawerListener {
 
     private ColorSlider mColorSlider;
 
-    private AlphaSlider mAlphaSlider;
+    private ActionBarAlphaSlider mAlphaSlider;
 
     private MenuItem mIcon1, mIcon2;
+
+    private TextView mActionBarTitleView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action_bar_transformation);
 
-        mColorSlider = new ColorSlider(Color.BLACK, Color.WHITE).with(new IconPainter());
+        mColorSlider = new ColorSlider(Color.BLUE, Color.BLACK).with(new IconPainter());
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerLayout.setDrawerListener(this);
 
-        mAlphaSlider = new AlphaSlider(false);
-        mAlphaSlider.onSlide(0, getSupportActionBar());
+        mAlphaSlider = new ActionBarAlphaSlider(false, getSupportActionBar(), Color.GREEN);
+        mAlphaSlider.onSlide(0);
+
+        int actionBarTitleId = Resources.getSystem().getIdentifier("action_bar_title", "id", "android");
+        if (actionBarTitleId > 0) {
+            mActionBarTitleView = (TextView) findViewById(actionBarTitleId);
+            mActionBarTitleView.setTextColor(Color.BLACK);
+        }
     }
 
 
@@ -50,7 +64,11 @@ public class ActionBarTransformationActivity extends ActionBarActivity implement
     @Override
     public void onDrawerSlide(View view, float v) {
         mColorSlider.onSlide(v, mIcon1, mIcon2);
-        mAlphaSlider.onSlide(v, getSupportActionBar());
+        mAlphaSlider.onSlide(v);
+
+        if(mActionBarTitleView!=null){
+            mActionBarTitleView.setTextColor(SliderUtils.calculateColor(v, Color.BLACK, Color.BLUE));
+        }
     }
 
     @Override
