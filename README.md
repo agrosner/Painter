@@ -1,9 +1,12 @@
 Painter
 =======
 
+Why use different colors of the same asset when you can include one color and change it to fit your needs? Also how do you handle dynamic changes such as when you use a drawer and want to do some really neat effects? 
+<br />
 This library enables you to color a view, image icons, and text in a very simple way. 
 
 ## Usage
+
 
 
 ### Painting 
@@ -21,10 +24,11 @@ Example 1:
 ```java
 
   // "object" applies to a MenuItem, ImageView image, or TextView compound drawable. 
+  // this is a varg param
   new IconPainter(Color.BLACK).paint(object);
 
   //can reuse object for different paints if you wish
-  new IconPainter().paint(object, Color.Black);
+  new IconPainter().paint(Color.Black, object1, object2, objectn);
 ```
 
 #### Background Painting
@@ -36,12 +40,30 @@ Example 1:
 <br />
 ```java
 
-  //in this case, the "object" applies to a View, MenuItem's action view, or ActionBar
-  new BackgroundPainter(Color.BLUE).paint(object);
+  //we can use many View, MenuItem's action view, or ActionBars
+  new BackgroundPainter(Color.BLUE).paint(view, actionView, actionBar);
   
   //can use different paints if you want
-  new BackgroundPainter().paint(object, Color.Blue);
+  new BackgroundPainter().paint(Color.Blue, objects);
 
 ```
 
 ### Sliders
+
+Sliders describe mutating a property from one value to the next based on a ratio from 0 to 1. 
+<br />
+Supported Sliders include:
+* AlphaSlider
+* ColorSlider
+* Create your own *PropertySlider* class
+
+#### Alpha Slider
+
+This will set the background alpha on the object you pass in whether its an ActionBar, MenuItem, or View.
+
+```java
+
+  //"slideOffset" is a number from 0...1 and "myObjects" is a varg param that operates on multiple objects
+  new AlphaSlider(startFullAlpha).onSlide(slideOffset, myObjects);
+
+```
