@@ -54,7 +54,7 @@ Example 1:
 
 #### Background Painting
 
-Background painting will take the background of the item you pass in (namely it's background drawable) and change the color as well.
+Background painting will take the background of the item you pass in (namely it's background drawable) and change the color as well. It is **strongly** advised you do not paint the actionbar background more than once on first load as this is extremely inefficient due to the fact we cannot easily retrieve the background drawable once it is set on the actionbar. 
 
 <br />
 Example 1:
@@ -86,6 +86,10 @@ This will set the background alpha on the object you pass in whether its an Acti
 
   //"slideOffset" is a number from 0...1 and "myObjects" is a varg param that operates on multiple objects
   new AlphaSlider(startFullAlpha).onSlide(slideOffset, myObjects);
+  
+  //this will set the color of the actionbar and begin sliding. 
+  // this required for an actionbar as there is no easy way to acquire the ActionBar drawable background
+  new ActionBarAlphaSlider(startFullAlpha, actionBar, startColor);
 
 ```
 
@@ -97,8 +101,14 @@ This will slide from one color to another, displaying all colors in between to c
 
   new ColorSlider(Color.Black, Color.WHITE).with(new BackgroundPainter()).onSlide(slideOffset, object1, object2,objectn);
   new ColorSlider(getResources().getColor(R.color.my_color), getResources().getColor(R.color.my_color_2)).with(new IconPainter()).onSlide(slideOffset, icon1, icon2, icon3, iconn);
+  
+  ActionBarColorSlider slider = new ActionBarColorSlider(actionBar, startColor, endColor);
+  ...
+  slider.onSlide(slideOffset);
 
 ```
+
+
 
 ## License
 
