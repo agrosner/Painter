@@ -1,4 +1,4 @@
-![Image](/Painter/blob/master/palette.jpg?raw=true)
+![Image](https://github.com/agrosner/Painter/blob/master/palette.jpg?raw=true)
 
 Painter
 =======
