@@ -14,16 +14,17 @@ import android.view.View;
  * Contributors: {}
  * Description:
  */
-public class BackgroundPainter implements Painter{
+public class BackgroundPainter extends Painter{
 
-    private final int mColor;
+    public BackgroundPainter() {
+    }
 
     public BackgroundPainter(int mColor) {
         this.mColor = mColor;
     }
 
     @Override
-    public void paint(Object viewObject) {
+    public void paint(Object viewObject, int paint) {
         if(viewObject!=null){
             Drawable drawable;
             if(viewObject instanceof View){
@@ -31,16 +32,16 @@ public class BackgroundPainter implements Painter{
             } else if(viewObject instanceof MenuItem && ((MenuItem) viewObject).getActionView()!=null){
                 drawable = ((MenuItem) viewObject).getActionView().getBackground();
             } else if(viewObject instanceof ActionBar){
-                drawable = new ColorDrawable(mColor);
+                drawable = new ColorDrawable(paint);
                 ((ActionBar) viewObject).setBackgroundDrawable(drawable);
             } else if(Build.VERSION.SDK_INT>=14 && viewObject instanceof android.app.ActionBar){
-                drawable = new ColorDrawable(mColor);
+                drawable = new ColorDrawable(paint);
                 ((android.app.ActionBar) viewObject).setBackgroundDrawable(drawable);
             } else{
                 throw new RuntimeException("Could not find a background to paint with: " + viewObject.getClass().getName());
             }
 
-            drawable.setColorFilter(mColor, PorterDuff.Mode.MULTIPLY);
+            drawable.setColorFilter(paint, PorterDuff.Mode.MULTIPLY);
         } else{
             throw new InvalidParameterException(getClass());
         }

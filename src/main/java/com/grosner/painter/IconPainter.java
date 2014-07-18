@@ -12,16 +12,17 @@ import android.widget.TextView;
  * Contributors: {}
  * Description: Paints an icon on an image into a specific color
  */
-public class IconPainter implements Painter{
+public class IconPainter extends Painter{
 
-    private final int mColor;
+    public IconPainter() {
+    }
 
-    private IconPainter(int color) {
+    public IconPainter(int color) {
         mColor = color;
     }
 
     @Override
-    public void paint(Object viewObject) {
+    public void paint(Object viewObject,int paint) {
         if(viewObject!=null) {
             Drawable drawable = null;
             if (viewObject instanceof ImageView) {
@@ -41,7 +42,7 @@ public class IconPainter implements Painter{
             }
 
             if (drawable != null) {
-                drawable.setColorFilter(mColor, PorterDuff.Mode.MULTIPLY);
+                drawable.setColorFilter(paint, PorterDuff.Mode.MULTIPLY);
             } else {
                 throw new RuntimeException("Could not find an icon to paint with: " + viewObject.getClass().getName());
             }

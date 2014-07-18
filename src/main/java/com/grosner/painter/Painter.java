@@ -6,7 +6,18 @@ package com.grosner.painter;
  * Contributors: {}
  * Description: The main interface to paint a view/menuitem/actionbar.
  */
-public interface Painter {
+public abstract class Painter {
 
-    public void paint(Object viewObject);
+    int mColor;
+
+
+    public Painter() {
+    }
+
+    public void paint(Object viewObject) {
+        paint(viewObject, mColor);
+    }
+
+    public abstract void paint(Object viewObject, int paint);
+
 }
