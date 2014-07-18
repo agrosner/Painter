@@ -38,6 +38,8 @@ public class AlphaSlider implements PropertySlider {
             if(((MenuItem) object).getActionView()!=null) {
                 drawable = ((MenuItem) object).getActionView().getBackground();
             }
+        } else{
+            SliderUtils.checkForActionBarObject(object);
         }
 
         if(drawable!=null){

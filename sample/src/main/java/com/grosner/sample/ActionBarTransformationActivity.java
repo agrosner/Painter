@@ -12,11 +12,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.grosner.painter.actionbar.ActionBarAlphaSlider;
-import com.grosner.painter.actionbar.ActionBarColorSlider;
-import com.grosner.painter.slider.AlphaSlider;
 import com.grosner.painter.slider.ColorSlider;
 import com.grosner.painter.IconPainter;
-import com.grosner.painter.utils.SliderUtils;
+import com.grosner.painter.slider.SliderUtils;
 
 public class ActionBarTransformationActivity extends ActionBarActivity implements DrawerLayout.DrawerListener {
 

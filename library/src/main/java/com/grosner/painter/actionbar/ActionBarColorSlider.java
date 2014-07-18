@@ -2,7 +2,7 @@ package com.grosner.painter.actionbar;
 
 import android.graphics.PorterDuff;
 
-import com.grosner.painter.utils.SliderUtils;
+import com.grosner.painter.slider.SliderUtils;
 
 /**
  * Created by: andrewgrosner

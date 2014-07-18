@@ -1,7 +1,6 @@
 package com.grosner.painter.slider;
 
 import com.grosner.painter.Painter;
-import com.grosner.painter.utils.SliderUtils;
 
 /**
  * Created by: andrewgrosner
@@ -33,6 +32,7 @@ public class ColorSlider implements PropertySlider {
 
         int color = SliderUtils.calculateColor(slideOffset, mStartColor, mEndColor);
         for(Object drawable: drawables) {
+            SliderUtils.checkForActionBarObject(drawable);
             mPainter.paintColor(color, drawable);
         }
     }
