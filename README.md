@@ -1,4 +1,4 @@
-![Image](../blob/master/palette.jpg?raw=true)
+![Image](/Painter/blob/master/palette.jpg?raw=true)
 
 Painter
 =======
