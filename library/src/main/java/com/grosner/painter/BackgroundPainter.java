@@ -8,6 +8,8 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.grosner.painter.exception.InvalidParameterException;
+
 /**
  * Created by: andrewgrosner
  * Date: 7/17/14.

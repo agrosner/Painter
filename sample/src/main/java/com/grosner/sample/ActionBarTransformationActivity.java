@@ -9,10 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.grosner.painter.AlphaSlider;
-import com.grosner.painter.ColorSlider;
+import com.grosner.painter.slider.AlphaSlider;
+import com.grosner.painter.slider.ColorSlider;
 import com.grosner.painter.IconPainter;
-import com.grosner.sample.R;
 
 public class ActionBarTransformationActivity extends ActionBarActivity implements DrawerLayout.DrawerListener {
 
@@ -27,7 +26,6 @@ public class ActionBarTransformationActivity extends ActionBarActivity implement
         setContentView(R.layout.activity_action_bar_transformation);
 
         mColorSlider = new ColorSlider(Color.BLACK, Color.WHITE).with(new IconPainter());
-
         DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         drawerLayout.setDrawerListener(this);
 
@@ -44,13 +42,15 @@ public class ActionBarTransformationActivity extends ActionBarActivity implement
 
         mIcon2 = menu.add(0, R.id.icon2, 0, "").setIcon(getResources().getDrawable(R.drawable.ic_action_add));
         MenuItemCompat.setShowAsAction(mIcon2, MenuItemCompat.SHOW_AS_ACTION_ALWAYS);
+
+        mColorSlider.onSlide(0, mIcon1, mIcon2);
         return true;
     }
 
     @Override
     public void onDrawerSlide(View view, float v) {
         mColorSlider.onSlide(v, mIcon1, mIcon2);
-        mAlphaSlider.onSlide(v, getActionBar());
+        mAlphaSlider.onSlide(v, getSupportActionBar());
     }
 
     @Override

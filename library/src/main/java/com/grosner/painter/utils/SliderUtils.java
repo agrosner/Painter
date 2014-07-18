@@ -1,4 +1,4 @@
-package com.grosner.painter;
+package com.grosner.painter.utils;
 
 import android.graphics.Color;
 

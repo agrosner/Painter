@@ -6,6 +6,8 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.grosner.painter.exception.InvalidParameterException;
+
 /**
  * Created by: andrewgrosner
  * Date: 7/17/14.

@@ -1,4 +1,7 @@
-package com.grosner.painter;
+package com.grosner.painter.slider;
+
+import com.grosner.painter.Painter;
+import com.grosner.painter.utils.SliderUtils;
 
 /**
  * Created by: andrewgrosner
@@ -6,7 +9,7 @@ package com.grosner.painter;
  * Contributors: {}
  * Description: Slides the passed in objects that can change color.
  */
-public class ColorSlider implements PropertySlider{
+public class ColorSlider implements PropertySlider {
 
     private final int mStartColor, mEndColor;
 
