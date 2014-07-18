@@ -24,7 +24,7 @@ public class BackgroundPainter extends Painter{
     }
 
     @Override
-    public void paint(int paint, Object... viewObjects) {
+    public void paintColor(int paint, Object... viewObjects) {
         for(Object viewObject: viewObjects){
             paint(viewObject, paint);
         }
@@ -35,16 +35,20 @@ public class BackgroundPainter extends Painter{
             Drawable drawable;
             if(viewObject instanceof View){
                 drawable = ((View) viewObject).getBackground();
+                if(drawable==null){
+                    drawable = new ColorDrawable(paint);
+                    ((View) viewObject).setBackgroundDrawable(drawable);
+                }
             } else if(viewObject instanceof MenuItem && ((MenuItem) viewObject).getActionView()!=null){
                 drawable = ((MenuItem) viewObject).getActionView().getBackground();
             } else if(viewObject instanceof ActionBar){
                 drawable = new ColorDrawable(paint);
                 ((ActionBar) viewObject).setBackgroundDrawable(drawable);
-            } else if(Build.VERSION.SDK_INT>=14 && viewObject instanceof android.app.ActionBar){
+            } else if(Build.VERSION.SDK_INT>=11 && viewObject instanceof android.app.ActionBar){
                 drawable = new ColorDrawable(paint);
                 ((android.app.ActionBar) viewObject).setBackgroundDrawable(drawable);
             } else{
-                throw new RuntimeException("Could not find a background to paint with: " + viewObject.getClass().getName());
+                throw new RuntimeException("Could not find a background to paintColor with: " + viewObject.getClass().getName());
             }
 
             drawable.setColorFilter(paint, PorterDuff.Mode.MULTIPLY);

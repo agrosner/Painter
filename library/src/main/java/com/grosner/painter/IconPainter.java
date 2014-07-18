@@ -22,7 +22,7 @@ public class IconPainter extends Painter{
     }
 
     @Override
-    public void paint(int paint, Object...viewObjects) {
+    public void paintColor(int paint, Object... viewObjects) {
         for(Object o: viewObjects){
             paint(o, paint);
         }
