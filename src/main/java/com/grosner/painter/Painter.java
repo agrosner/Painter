@@ -14,10 +14,10 @@ public abstract class Painter {
     public Painter() {
     }
 
-    public void paint(Object viewObject) {
-        paint(viewObject, mColor);
+    public void paint(Object...viewObjects) {
+        paint(mColor, viewObjects);
     }
 
-    public abstract void paint(Object viewObject, int paint);
+    public abstract void paint(int paint, Object...viewObjects);
 
 }

@@ -21,6 +21,6 @@ public class AlphaSlider implements PropertySlider {
 
     @Override
     public void onSlide(float slideOffset, Object... drawables) {
-        
+
     }
 }

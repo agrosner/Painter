@@ -24,6 +24,12 @@ public class BackgroundPainter extends Painter{
     }
 
     @Override
+    public void paint(int paint, Object... viewObjects) {
+        for(Object viewObject: viewObjects){
+            paint(viewObject, paint);
+        }
+    }
+
     public void paint(Object viewObject, int paint) {
         if(viewObject!=null){
             Drawable drawable;

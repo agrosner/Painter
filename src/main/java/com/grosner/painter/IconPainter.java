@@ -22,7 +22,13 @@ public class IconPainter extends Painter{
     }
 
     @Override
-    public void paint(Object viewObject,int paint) {
+    public void paint(int paint, Object...viewObjects) {
+        for(Object o: viewObjects){
+            paint(o, paint);
+        }
+    }
+
+    private void paint(Object viewObject,int paint){
         if(viewObject!=null) {
             Drawable drawable = null;
             if (viewObject instanceof ImageView) {
