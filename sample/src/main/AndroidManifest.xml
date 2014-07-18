@@ -16,8 +16,12 @@
         <activity
             android:name=".PaletteActivity"
             android:label="@string/title_activity_icon_palette"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
-            >
+            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+        </activity>
+        <activity
+            android:name=".ActionBarTransformationActivity"
+            android:theme="@style/Theme.AppCompat.Light"
+            android:label="@string/title_activity_action_bar_transformation" >
         </activity>
     </application>
 

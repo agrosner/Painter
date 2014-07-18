@@ -29,7 +29,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
         if(position==0){
             startActivity(new Intent(this, PaletteActivity.class));
         } else if(position==1){
-
+            startActivity(new Intent(this, ActionBarTransformationActivity.class));
         }
     }
 }
