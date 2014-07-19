@@ -10,9 +10,11 @@ import com.grosner.painter.Painter;
  */
 public class ColorSlider implements PropertySlider {
 
-    private final int mStartColor, mEndColor;
+    private int mStartColor, mEndColor;
 
     private Painter mPainter;
+
+    private int mCurrentColor;
 
     public ColorSlider(int mStartColor, int mEndColor) {
         this.mStartColor = mStartColor;
@@ -24,16 +26,36 @@ public class ColorSlider implements PropertySlider {
         return this;
     }
 
+    public void setStartColor(int mStartColor) {
+        this.mStartColor = mStartColor;
+    }
+
+    public void setEndColor(int mEndColor) {
+        this.mEndColor = mEndColor;
+    }
+
+    public int getStartColor() {
+        return mStartColor;
+    }
+
+    public int getEndColor() {
+        return mEndColor;
+    }
+
+    public int getCurrentColor() {
+        return mCurrentColor;
+    }
+
     @Override
     public void onSlide(float slideOffset, Object...drawables) {
         if(mPainter==null){
             throw new IllegalStateException("Color slider needs a Painter class to know how to paint the color!");
         }
 
-        int color = SliderUtils.calculateColor(slideOffset, mStartColor, mEndColor);
+        mCurrentColor = SliderUtils.calculateColor(slideOffset, mStartColor, mEndColor);
         for(Object drawable: drawables) {
             SliderUtils.checkForActionBarObject(drawable);
-            mPainter.paintColor(color, drawable);
+            mPainter.paintColor(mCurrentColor, drawable);
         }
     }
 }
