@@ -23,12 +23,14 @@ This library enables you to color a view, image icons, and text in a very simple
 ```groovy
 
 dependencies{
+  compile 'com.github.agrosner:library:1.0.+'
+  
+  //or locally in the a folder named "Libraries"
   compile project(':Libraries:Painter');
 }
 
 ```
 <br />
-Note: Coming to MavenCentral soon.
 
 ### Painting 
 
