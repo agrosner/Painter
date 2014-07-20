@@ -9,10 +9,21 @@ package com.grosner.painter.actionbar;
  */
 public class ActionBarAlphaSlider extends ActionBarSlider{
 
+    /**
+     * This property, when true, will show the full color of the object initially
+     * before sliding it to invisible. The reverse is false.
+     */
     private boolean mStartFullAlpha;
 
-    public ActionBarAlphaSlider(boolean startFullAlpha, Object actionBar, int startColor){
-        super(startColor);
+    /**
+     * Constructs this slider
+     * @param startFullAlpha - This property, when true, will show the full color of the object initially
+     * before sliding it to invisible. The reverse is false.
+     * @param actionBar - support or native ActionBar class
+     * @param fullColor - the color that the background drawable will be
+     */
+    public ActionBarAlphaSlider(boolean startFullAlpha, Object actionBar, int fullColor){
+        super(fullColor);
         mStartFullAlpha = startFullAlpha;
         setBackgroundDrawable(actionBar);
         onSlide(0);

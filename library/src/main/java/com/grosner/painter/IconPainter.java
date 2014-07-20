@@ -16,20 +16,32 @@ import com.grosner.painter.exception.InvalidParameterException;
  */
 public class IconPainter extends Painter{
 
+    /**
+     * Basic constructor meant for Sliders
+     */
     public IconPainter() {
     }
 
+    /**
+     * Constructs the painter with a non-resource-color value
+     * @param color - must be a hex color value
+     */
     public IconPainter(int color) {
         mColor = color;
     }
 
     @Override
-    public void paintColor(int paint, Object... viewObjects) {
-        for(Object o: viewObjects){
+    public void paintColor(int paint, Object... objects) {
+        for(Object o: objects){
             paint(o, paint);
         }
     }
 
+    /**
+     * Paint the passed color (non-resource value) on the object
+     * @param object - ImageView, MenuItem's Icon, TextView's first available CompoundDrawables
+     * @param paint
+     */
     private void paint(Object viewObject,int paint){
         if(viewObject!=null) {
             Drawable drawable = null;
