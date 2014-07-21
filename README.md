@@ -49,10 +49,15 @@ Example 1:
 
   // "object" applies to a MenuItem, ImageView image, or TextView compound drawable. 
   // this is a varg param
-  new IconPainter(Color.BLACK).paint(object);
+  // "cloneDrawable" specifies we want to mutate the drawable so that any changes to it will not be globally saved
+  IconPainter iconPainter = new IconPainter(cloneDrawable, Color.BLACK);
+  iconPainter.paint(object);
+  
+  //specify a PorterDuff Mode for different effects
+  iconPainter.withMode(mode);
 
   //can reuse object for different paints if you wish
-  new IconPainter().paint(Color.Black, object1, object2, objectn);
+  iconPainter.paintColor(cloneDrawable, Color.Black, object1, object2, objectn);
 ```
 
 #### Background Painting
@@ -65,10 +70,10 @@ Example 1:
 ```java
 
   //we can use many View, MenuItem's action view, or ActionBars
-  new BackgroundPainter(Color.BLUE).paint(view, actionView, actionBar);
+  new BackgroundPainter(cloneDrawable, Color.BLUE).paint(view, actionView, actionBar);
   
   //can use different paints if you want
-  new BackgroundPainter().paint(Color.Blue, objects);
+  new BackgroundPainter().paintColor(cloneDrawable, Color.Blue, objects);
 
 ```
 
