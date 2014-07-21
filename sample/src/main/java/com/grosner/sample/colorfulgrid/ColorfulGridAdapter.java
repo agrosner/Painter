@@ -1,6 +1,7 @@
 package com.grosner.sample.colorfulgrid;
 
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -26,7 +27,7 @@ public class ColorfulGridAdapter extends BaseAdapter {
     Painter mPainter;
 
     public ColorfulGridAdapter(){
-        mRandom = new Random(System.currentTimeMillis());
+        mRandom = new Random();
         mPainter = new IconPainter();
     }
 

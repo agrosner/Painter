@@ -67,7 +67,9 @@ public class IconPainter extends Painter{
     private void paint(boolean cloneDrawable, Object viewObject,int paint){
         if(viewObject!=null) {
             Drawable drawable = null;
-            if (viewObject instanceof ImageView) {
+            if(viewObject instanceof Drawable){
+                drawable = (Drawable) viewObject;
+            } else  if (viewObject instanceof ImageView) {
                 drawable = PainterUtils.getDrawable(cloneDrawable, paint, ((ImageView) viewObject).getDrawable());
                 ((ImageView) viewObject).setImageDrawable(drawable);
             } else if (viewObject instanceof TextView) {
