@@ -13,7 +13,8 @@ This library enables you to color a view, image icons, and text in a very simple
 
 1. This project includes android support-v4:20.+ and appcompat-v7:20.+. I will make sure to make a version using only native dependencies or without appcompat. 
 2. This project currently compiles with API 20 and buildToolsVersion 20.0.0, hopefully there will be a way to use project level in the future. 
-3. MinSdk is 5
+3. MinSdk is 5, however with appcompat and support that is upped to 8. I will try to make it lower for non-support libraries.
+4. This project is currently in **active** development. Using the development branch has *no* guarantees of working functionality and or/breaking changes to code. The best bet is the master branch for all stable releases, or by using a remote aar dependency. 
 
 ### Including in your project
 
@@ -110,7 +111,14 @@ This will slide from one color to another, displaying all colors in between to c
 
 ```
 
+## Open Source
 
+I will love and appreciate all merge requests. Here are some basic rules on them:
+1. Try to match my coding style.
+2. If they require any breaking changes, they must be on development branch, otherwise I will reject them.
+3. Please leave a summary of what you changed/added.
+
+Thank you!
 
 ## License
 
