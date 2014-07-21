@@ -71,36 +71,44 @@ public class BackgroundPainter extends Painter{
      */
     public void paint(boolean cloneDrawable, Object object, int paint) {
         if(object!=null){
-            Drawable drawable;
+            Drawable drawable = null;
             if(object instanceof Drawable){
                 // we will not copy it here since we will assume a global change
                 drawable = (Drawable) object;
-            } else if(object instanceof View){
-                drawable = ((View) object).getBackground();
-                if(drawable==null){
-                    drawable = new ColorDrawable(paint);
-                    ((View) object).setBackgroundDrawable(drawable);
-                } else if(cloneDrawable){
-                    drawable = drawable.getConstantState().newDrawable();
-                    ((View) object).setBackgroundDrawable(drawable);
+            } else if(object instanceof View || object instanceof MenuItem){
+                View view = null;
+                if(object instanceof MenuItem && Utils.isHoneyComb()){
+                    view = ((MenuItem) object).getActionView();
+                } else if(object instanceof View){
+                    view = ((View) object);
                 }
-            } else if(object instanceof MenuItem && ((MenuItem) object).getActionView()!=null){
-                drawable = ((MenuItem) object).getActionView().getBackground();
-                if(cloneDrawable) {
-                    drawable = drawable.getConstantState().newDrawable();
-                    ((MenuItem) object).getActionView().setBackgroundDrawable(drawable);
+                if(view!=null) {
+                    drawable = view.getBackground();
+
+                    //color drawables do not have a colorfilter option
+                    if (drawable == null || drawable instanceof ColorDrawable) {
+                        drawable = new ColorDrawable(paint);
+                        view.setBackgroundDrawable(drawable);
+                    } else if (cloneDrawable) {
+                        drawable = drawable.getConstantState().newDrawable();
+                        view.setBackgroundDrawable(drawable);
+                    }
                 }
             } else if(object instanceof ActionBar){
                 drawable = new ColorDrawable(paint);
                 ((ActionBar) object).setBackgroundDrawable(drawable);
-            } else if(Build.VERSION.SDK_INT>=11 && object instanceof android.app.ActionBar){
+            } else if(Utils.isHoneyComb() && object instanceof android.app.ActionBar){
                 drawable = new ColorDrawable(paint);
                 ((android.app.ActionBar) object).setBackgroundDrawable(drawable);
             } else{
                 throw new RuntimeException("Could not find a background to paintColor with: " + object.getClass().getName());
             }
 
-            drawable.setColorFilter(paint, mMode);
+            if(drawable!=null) {
+                drawable.setColorFilter(paint, mMode);
+            } else {
+                throw new RuntimeException("Could not find a background to paint with: " + object.getClass().getName());
+            }
         } else{
             throw new InvalidParameterException(getClass());
         }

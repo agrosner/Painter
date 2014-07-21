@@ -41,5 +41,6 @@ public class PaletteActivity extends ActionBarActivity implements ColorPicker.On
     public void onColorChanged(int i) {
         mIconPainter.paintColor(false, i, mImage);
         mBackgroundPainter.paintColor(true, i, background, getSupportActionBar());
+        background.invalidate();
     }
 }
