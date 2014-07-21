@@ -21,11 +21,13 @@ public class PainterUtils {
      * @return - fully created drawable
      */
     public static Drawable getDrawable(boolean cloneDrawable, int paint, Drawable drawable){
-        Drawable retDrawable = null;
+        Drawable retDrawable;
         if(drawable==null || drawable instanceof ColorDrawable){
             retDrawable = new ColorDrawable(paint);
         } else if(cloneDrawable){
             retDrawable = drawable.getCurrent().getCurrent();
+        } else{
+            retDrawable = drawable;
         }
         return retDrawable;
     }
