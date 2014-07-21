@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.grosner.sample" >
 
-    <application android:icon="@drawable/ic_launcher" >
+    <application android:icon="@drawable/ic_launcher"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar"
+        >
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            android:label="@string/title_activity_main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -15,13 +16,16 @@
         </activity>
         <activity
             android:name=".PaletteActivity"
-            android:label="@string/title_activity_icon_palette"
-            android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+            android:label="@string/title_activity_icon_palette">
         </activity>
         <activity
             android:name=".ActionBarTransformationActivity"
             android:theme="@style/SampleTheme"
             android:label="@string/title_activity_action_bar_transformation" >
+        </activity>
+        <activity
+            android:name=".colorfulgrid.ColorfulGridActivity">
+
         </activity>
     </application>
 

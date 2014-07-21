@@ -25,7 +25,7 @@ public class PainterUtils {
         if(drawable==null || drawable instanceof ColorDrawable){
             retDrawable = new ColorDrawable(paint);
         } else if(cloneDrawable){
-            retDrawable = drawable.getCurrent().getCurrent();
+            retDrawable = drawable.getConstantState().newDrawable();
         } else{
             retDrawable = drawable;
         }

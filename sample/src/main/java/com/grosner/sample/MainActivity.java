@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.grosner.sample.colorfulgrid.ColorfulGridActivity;
+
 public class MainActivity extends ActionBarActivity implements AdapterView.OnItemClickListener {
 
     @Override
@@ -18,7 +20,7 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
 
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, new String[]{
-                "Palette", "ActionBar Transformation Example"
+                "Palette", "ActionBar Transformation Example", "Colorful Grid!"
         }));
         listView.setOnItemClickListener(this);
     }
@@ -30,6 +32,8 @@ public class MainActivity extends ActionBarActivity implements AdapterView.OnIte
             startActivity(new Intent(this, PaletteActivity.class));
         } else if(position==1){
             startActivity(new Intent(this, ActionBarTransformationActivity.class));
+        } else if(position==2){
+            startActivity(new Intent(this, ColorfulGridActivity.class));
         }
     }
 }
