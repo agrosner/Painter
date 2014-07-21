@@ -68,13 +68,8 @@ public class IconPainter extends Painter{
         if(viewObject!=null) {
             Drawable drawable = null;
             if (viewObject instanceof ImageView) {
-                drawable = ((ImageView) viewObject).getDrawable();
-
-                if(cloneDrawable) {
-                    drawable = drawable.getConstantState().newDrawable();
-                    //make a copy so we need to apply it to the image
-                    ((ImageView) viewObject).setImageDrawable(drawable);
-                }
+                drawable = PainterUtils.getDrawable(cloneDrawable, paint, ((ImageView) viewObject).getDrawable());
+                ((ImageView) viewObject).setImageDrawable(drawable);
             } else if (viewObject instanceof TextView) {
                 Drawable[] drawables = ((TextView) viewObject).getCompoundDrawables();
 
@@ -83,22 +78,14 @@ public class IconPainter extends Painter{
                     Drawable d = drawables[i];
                     if (d != null) {
                         drawable = d;
-                        if(cloneDrawable) {
-                            drawable = d.getConstantState().newDrawable();
-                            drawables[i] = drawable;
-                        }
+                        drawables[i] = PainterUtils.getDrawable(cloneDrawable, paint, d);
                         break;
                     }
                 }
-                if(cloneDrawable) {
-                    ((TextView) viewObject).setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
-                }
+                ((TextView) viewObject).setCompoundDrawables(drawables[0], drawables[1], drawables[2], drawables[3]);
             } else if (viewObject instanceof MenuItem) {
-                drawable = ((MenuItem) viewObject).getIcon();
-                if(cloneDrawable) {
-                    drawable = drawable.getConstantState().newDrawable();
-                    ((MenuItem) viewObject).setIcon(drawable);
-                }
+                drawable = PainterUtils.getDrawable(cloneDrawable, paint,((MenuItem) viewObject).getIcon());
+                ((MenuItem) viewObject).setIcon(drawable);
             }
 
             if (drawable != null) {

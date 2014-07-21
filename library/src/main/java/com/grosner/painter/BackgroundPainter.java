@@ -73,8 +73,7 @@ public class BackgroundPainter extends Painter{
         if(object!=null){
             Drawable drawable = null;
             if(object instanceof Drawable){
-                // we will not copy it here since we will assume a global change
-                drawable = (Drawable) object;
+                drawable = PainterUtils.getDrawable(cloneDrawable, paint, ((Drawable) object));
             } else if(object instanceof View || object instanceof MenuItem){
                 View view = null;
                 if(object instanceof MenuItem && Utils.isHoneyComb()){
@@ -83,16 +82,8 @@ public class BackgroundPainter extends Painter{
                     view = ((View) object);
                 }
                 if(view!=null) {
-                    drawable = view.getBackground();
-
-                    //color drawables do not have a colorfilter option
-                    if (drawable == null || drawable instanceof ColorDrawable) {
-                        drawable = new ColorDrawable(paint);
-                        view.setBackgroundDrawable(drawable);
-                    } else if (cloneDrawable) {
-                        drawable = drawable.getConstantState().newDrawable();
-                        view.setBackgroundDrawable(drawable);
-                    }
+                    drawable = PainterUtils.getDrawable(cloneDrawable, paint, view.getBackground());
+                    view.setBackgroundDrawable(drawable);
                 }
             } else if(object instanceof ActionBar){
                 drawable = new ColorDrawable(paint);
