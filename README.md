@@ -111,7 +111,14 @@ This will slide from one color to another, displaying all colors in between to c
 
 ```
 
+## Open Source
 
+I will love and appreciate all merge requests. Here are some basic rules on them:
+1. Try to match my coding style.
+2. If they require any breaking changes, they must be on development branch, otherwise I will reject them.
+3. Please leave a summary of what you changed/added.
+
+Thank you!
 
 ## License
 
