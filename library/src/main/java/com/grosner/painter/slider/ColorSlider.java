@@ -101,7 +101,7 @@ public class ColorSlider implements PropertySlider {
         mCurrentColor = SliderUtils.calculateColor(slideOffset, mStartColor, mEndColor);
         for(Object drawable: objects) {
             SliderUtils.checkForActionBarObject(drawable);
-            mPainter.paintColor(mCurrentColor, drawable);
+            mPainter.paintColor(false, mCurrentColor, drawable);
         }
     }
 }

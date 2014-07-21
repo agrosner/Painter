@@ -23,6 +23,7 @@ public class BackgroundPainter extends Painter{
      * Basic constructor meant for Sliders
      */
     public BackgroundPainter() {
+        super(false);
     }
 
     /**
@@ -30,34 +31,65 @@ public class BackgroundPainter extends Painter{
      * @param mColor - non-color-resource value.
      */
     public BackgroundPainter(int mColor) {
+        this(false, mColor);
+    }
+
+    /**
+     * Stores the color of the paint.
+     * @param cloneDrawable - whether we want to reuse a drawable globally,
+     *                      or clone it for the specific object. Default is false.
+     * @param mColor - non-color-resource value.
+     *
+     */
+    public BackgroundPainter(boolean cloneDrawable, int mColor){
+        super(cloneDrawable);
         this.mColor = mColor;
     }
 
+    /**
+     * The {@link android.graphics.PorterDuff.Mode} mode that you can set to fill the color on the view with.
+     * @param mode
+     * @return
+     */
+    public BackgroundPainter withMode(PorterDuff.Mode mode){
+        mMode = mode;
+        return this;
+    }
+
     @Override
-    public void paintColor(int paint, Object... objects) {
+    public void paintColor(boolean cloneDrawable, int paint, Object... objects) {
         for(Object viewObject: objects){
-            paint(viewObject, paint);
+            paint(cloneDrawable, viewObject, paint);
         }
     }
 
     /**
      * Paint the passed color (non-resource value) on the object
+     * @param cloneDrawable - whether we want to reuse a drawable globally, or clone it for the specific object
      * @param object - View, MenuItem's ActionView, ActionBar, or Drawable
      * @param paint
      */
-    public void paint(Object object, int paint) {
+    public void paint(boolean cloneDrawable, Object object, int paint) {
         if(object!=null){
             Drawable drawable;
             if(object instanceof Drawable){
+                // we will not copy it here since we will assume a global change
                 drawable = (Drawable) object;
             } else if(object instanceof View){
                 drawable = ((View) object).getBackground();
                 if(drawable==null){
                     drawable = new ColorDrawable(paint);
                     ((View) object).setBackgroundDrawable(drawable);
+                } else if(cloneDrawable){
+                    drawable = drawable.getConstantState().newDrawable();
+                    ((View) object).setBackgroundDrawable(drawable);
                 }
             } else if(object instanceof MenuItem && ((MenuItem) object).getActionView()!=null){
                 drawable = ((MenuItem) object).getActionView().getBackground();
+                if(cloneDrawable) {
+                    drawable = drawable.getConstantState().newDrawable();
+                    ((MenuItem) object).getActionView().setBackgroundDrawable(drawable);
+                }
             } else if(object instanceof ActionBar){
                 drawable = new ColorDrawable(paint);
                 ((ActionBar) object).setBackgroundDrawable(drawable);
@@ -68,7 +100,7 @@ public class BackgroundPainter extends Painter{
                 throw new RuntimeException("Could not find a background to paintColor with: " + object.getClass().getName());
             }
 
-            drawable.setColorFilter(paint, PorterDuff.Mode.MULTIPLY);
+            drawable.setColorFilter(paint, mMode);
         } else{
             throw new InvalidParameterException(getClass());
         }

@@ -1,5 +1,7 @@
 package com.grosner.painter;
 
+import android.graphics.PorterDuff;
+
 /**
  * Created by: andrewgrosner
  * Date: 7/17/14.
@@ -13,11 +15,22 @@ public abstract class Painter {
      */
     protected int mColor;
 
+    /**
+     * whether we want to reuse a drawable globally, or clone it for the specific object
+     */
+    protected boolean cloneDrawable;
+
+    /**
+     * The {@link android.graphics.PorterDuff.Mode} mode that you can set to fill the color on the view with.
+     */
+    protected PorterDuff.Mode mMode = PorterDuff.Mode.MULTIPLY;
 
     /**
      * Default constructor
+     * @param - whether we want to reuse a drawable globally, or clone it for the specific object
      */
-    public Painter() {
+    public Painter(boolean cloneDrawable) {
+        this.cloneDrawable = cloneDrawable;
     }
 
     /**
@@ -25,7 +38,7 @@ public abstract class Painter {
      * @param objects
      */
     public void paint(Object...objects) {
-        paintColor(mColor, objects);
+        paintColor(cloneDrawable, mColor, objects);
     }
 
     /**
@@ -33,6 +46,6 @@ public abstract class Painter {
      * @param paint - the hex-value color
      * @param objects - depends on painting class on what it can accept
      */
-    public abstract void paintColor(int paint, Object... objects);
+    public abstract void paintColor(boolean cloneDrawable, int paint, Object... objects);
 
 }
