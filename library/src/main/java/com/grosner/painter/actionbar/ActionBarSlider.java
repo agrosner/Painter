@@ -5,6 +5,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.ActionBar;
 
+import com.grosner.painter.Utils;
 import com.grosner.painter.exception.InvalidParameterException;
 
 /**
@@ -24,6 +25,8 @@ public abstract class ActionBarSlider {
      * The initial color of the drawable
      */
     protected int mStartColor;
+
+    protected Object mActionBar;
 
     /**
      * Call this when your drawer, sliding pane, or another transforming view slides. The offset should be [0..1].
@@ -45,13 +48,18 @@ public abstract class ActionBarSlider {
      * @param actionBar
      */
     protected void setBackgroundDrawable(Object actionBar){
+        mActionBar = actionBar;
         if(actionBar==null){
             throw new InvalidParameterException(getClass());
         }
         if(actionBar instanceof ActionBar){
             ((ActionBar) actionBar).setBackgroundDrawable(mDrawable);
-        } else if(Build.VERSION.SDK_INT>=11 && actionBar instanceof android.app.ActionBar){
+        } else if(Utils.isHoneyComb() && actionBar instanceof android.app.ActionBar){
             ((android.app.ActionBar) actionBar).setBackgroundDrawable(mDrawable);
         }
+    }
+
+    public int getStartColor() {
+        return mStartColor;
     }
 }

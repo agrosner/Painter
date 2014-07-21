@@ -1,7 +1,9 @@
 package com.grosner.painter.actionbar;
 
 import android.graphics.PorterDuff;
+import android.graphics.drawable.ColorDrawable;
 
+import com.grosner.painter.Utils;
 import com.grosner.painter.slider.SliderUtils;
 
 /**
@@ -16,7 +18,7 @@ public class ActionBarColorSlider extends ActionBarSlider{
     /**
      * The ending color when the ratio of the slide is 1
      */
-    private final int mEndColor;
+    private int mEndColor;
 
     /**
      * Constructs a new instance.
@@ -32,7 +34,26 @@ public class ActionBarColorSlider extends ActionBarSlider{
 
     @Override
     public void onSlide(float slideOffset) {
-        mDrawable.setColorFilter(SliderUtils.calculateColor(slideOffset, mStartColor, mEndColor),
-                PorterDuff.Mode.MULTIPLY);
+        int color = SliderUtils.calculateColor(slideOffset, mStartColor, mEndColor);
+        if(Utils.isHoneyComb()){
+            ((ColorDrawable) mDrawable).setColor(color);
+        } else {
+            mDrawable = new ColorDrawable(color);
+            setBackgroundDrawable(mActionBar);
+        }
+    }
+
+    public void setStartColor(Object actionBar, int color){
+        mStartColor = color;
+        mDrawable = new ColorDrawable(color);
+        setBackgroundDrawable(actionBar);
+    }
+
+    public void setEndColor(int color){
+        mEndColor = color;
+    }
+
+    public int getEndColor() {
+        return mEndColor;
     }
 }

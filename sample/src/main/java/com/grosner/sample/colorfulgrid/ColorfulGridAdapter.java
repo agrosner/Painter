@@ -1,50 +1,30 @@
 package com.grosner.sample.colorfulgrid;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.grosner.painter.IconPainter;
 import com.grosner.painter.Painter;
 import com.grosner.sample.R;
-
-import java.util.Random;
+import com.grosner.sample.adapter.RandomColorAdapter;
 
 /**
  * Created by: andrewgrosner
  * Date: 7/21/14.
  * Contributors: {}
- * Description:
+ * Description: This displays the power of Painter. The imageview needs only to set its
+ * drawable once its created and painter will paint a new color with the same drawable.
  */
-public class ColorfulGridAdapter extends BaseAdapter {
-
-
-    Random mRandom;
+public class ColorfulGridAdapter extends RandomColorAdapter {
 
     Painter mPainter;
 
     public ColorfulGridAdapter(){
-        mRandom = new Random();
+        super();
         mPainter = new IconPainter();
     }
 
-    @Override
-    public int getCount() {
-        return Integer.MAX_VALUE;
-    }
-
-    @Override
-    public Integer getItem(int position) {
-        return Color.argb(255, mRandom.nextInt(256), mRandom.nextInt(256), mRandom.nextInt(256));
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">Painter Samples</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_icon_palette">IconPaletteActivity</string>
     <string name="title_activity_action_bar_transformation">ActionBarTransformationActivity</string>
+    <string name="title_activity_changing_action_bar">ChangingActionBarActivity</string>
 
 </resources>
