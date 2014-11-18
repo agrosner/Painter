@@ -1,3 +1,5 @@
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Painter-brightgreen.svg?style=flat)](https://android-arsenal.com/details/1/735)
+
 ![Image](https://github.com/agrosner/Painter/blob/master/palette.jpg?raw=true)
 
 Painter
